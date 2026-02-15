@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relaxation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='relax.css') }}">
+</head>
+<body>
+
+<div class="page-wrapper">
+    <h1 class="page-title">Relaxation</h1>
+    <p class="page-subtitle">Pause. Breathe. Reset.</p>
+
+    <div class="card-grid">
+        <div class="soft-card" onclick="startBreathing()">
+            <h3>🌬 Breathing</h3>
+            <p>Slow breathing to calm your nervous system.</p>
+        </div>
+
+        <div class="soft-card">
+            <h3>🧘 Body Relaxation</h3>
+            <p>Release tension from head to toe.</p>
+        </div>
+    </div>
+
+    <div id="breathing-box" class="breathing-box">
+        <h2 id="breathing-text">Ready?</h2>
+    </div>
+
+    <div class="section-cta">
+        <a href="/dashboard"><button>Back</button></a>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='relax.js') }}"></script>
+</body>
+</html>

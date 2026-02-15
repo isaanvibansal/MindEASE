@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MINDEASE</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="hero">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <h1>
+            Your Path to <span>Wellness</span><br>
+            Starts Here.
+        </h1>
+
+        <p>
+            We provide a safe and supportive space to help you understand your feelings,
+            develop coping strategies, and move forward with confidence.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="/signup"><button class="hero-btn primary">Get Started</button></a>
+            <a href="/login"><button class="hero-btn secondary">Login</button></a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
