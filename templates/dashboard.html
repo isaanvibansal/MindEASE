@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Dashboard</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <h1 class="page-title">Your Dashboard</h1>
+
+    <div class="folder-grid">
+
+        <!-- Mood Tracker -->
+        <a href="/mood" class="folder blue">
+            <div class="folder-icons">😊 📊</div>
+            <span>Mood Tracker</span>
+        </a>
+
+        <!-- Journal -->
+        <a href="/journal" class="folder green">
+            <div class="folder-icons">📓 ✍️</div>
+            <span>Journal</span>
+        </a>
+
+        <!-- Music Therapy -->
+        <a href="/music" class="folder orange">
+            <div class="folder-icons">🎧 🎶</div>
+            <span>Music Therapy</span>
+        </a>
+
+        <!-- Relaxation -->
+        <a href="/relax" class="folder yellow">
+            <div class="folder-icons">🧘 🌿</div>
+            <span>Relaxation</span>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
