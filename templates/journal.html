@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Journal</title>
+    <meta charset="UTF-8">
+    <title>Journal | MINDEASE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<div class="dashboard-card">
-    <h1>Journal 📓</h1>
-    <p>Write your thoughts</p>
+<form action="/save_journal" method="POST">
+    <div class="journal-wrapper">
+        <div class="notebook">
+            <div class="page left-page">
+                <h2>My Thoughts ✍️</h2>
+                <textarea name="leftText" placeholder="Start writing here..."></textarea>
+            </div>
 
-    <textarea rows="6" placeholder="Write here..." style="width:100%;border-radius:12px;padding:15px;"></textarea>
-    <br><br>
+            <div class="spine"></div>
 
-    <button class="dash-btn">Save</button>
-    <a href="/dashboard"><button class="dash-btn logout-btn">Back</button></a>
-</div>
+            <div class="page right-page">
+                <h2>Reflections 🌿</h2>
+                <textarea name="rightText" placeholder="What did you learn today?"></textarea>
+            </div>
+        </div>
+
+        <div class="journal-actions">
+            <button type="submit" class="save-btn">Save Entry</button>
+            <a href="/dashboard" class="back-btn">Back</a>
+        </div>
+    </div>
+</form>
 
 </body>
 </html>
