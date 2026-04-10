@@ -2,45 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your Dashboard</title>
+    <title>Your Dashboard | MINDEASE</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<div class="page-wrapper">
+<div class="dashboard-section">
 
-    <h1 class="page-title">Your Dashboard</h1>
+    <h1 class="dashboard-title">Your Dashboard</h1>
 
-    <div class="folder-grid">
+    <div class="dashboard-cards">
 
-        <!-- Mood Tracker -->
-        <a href="/mood" class="folder blue">
-            <div class="folder-icons">😊 📊</div>
-            <span>Mood Tracker</span>
-        </a>
+        <!-- MOOD TRACKER -->
+        <div class="dashboard-card-ui">
+            <img src="{{ url_for('static', filename='images/mood.png') }}" alt="Mood Tracker">
+            <p>Sifting through daily emotions</p>
+            <a href="/mood">
+                <button>Open</button>
+            </a>
+        </div>
 
-        <!-- Journal -->
-        <a href="/journal" class="folder green">
-            <div class="folder-icons">📓 ✍️</div>
-            <span>Journal</span>
-        </a>
+        <!-- JOURNAL -->
+        <div class="dashboard-card-ui">
+            <img src="{{ url_for('static', filename='images/journal.png') }}" alt="Journal">
+            <p>Write and reflect freely</p>
+            <a href="/journal">
+                <button>Open</button>
+            </a>
+        </div>
 
-        <!-- Music Therapy -->
-        <a href="/music" class="folder orange">
-            <div class="folder-icons">🎧 🎶</div>
-            <span>Music Therapy</span>
-        </a>
+        <!-- MUSIC THERAPY -->
+        <div class="dashboard-card-ui">
+            <img src="{{ url_for('static', filename='images/music.png') }}" alt="Music Therapy">
+            <p>Find music for your mood</p>
+            <a href="/music">
+                <button>Open</button>
+            </a>
+        </div>
 
-        <!-- Relaxation -->
-        <a href="/relax" class="folder yellow">
-            <div class="folder-icons">🧘 🌿</div>
-            <span>Relaxation</span>
-        </a>
+        <!-- INSIGHTS -->
+         <div class="dashboard-card-ui" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+    
+            <div style="padding-top: 20px; padding-bottom: 10px;">
+                 <img src="{{ url_for('static', filename='images/insights.png') }}" 
+             alt="Insights" 
+             style="height: 120px; width: auto; object-fit: contain;">
+            </div>
+
+            <p style="margin-top: auto; margin-bottom: 15px;">Check your progress and data</p>
+    
+            <a href="/insights">
+                <button class="open-btn">Open</button>
+            </a>
+         </div>
+        
 
     </div>
 
