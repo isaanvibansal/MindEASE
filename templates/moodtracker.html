@@ -1,24 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Mood Tracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindEase - How are you?</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        :root {
+            --bg-color: #e0f7fa; /* Default soft turquoise */
+        }
+
+        body {
+            background: var(--bg-color);
+            transition: background 0.5s ease;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+        }
+
+        .mood-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .mood-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .mood-bubble {
+            width: 150px;
+            height: 150px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: none;
+        }
+
+        .mood-bubble:hover {
+            transform: scale(1.15) translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .mood-bubble .emoji {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .mood-bubble span {
+            font-weight: 600;
+            color: #444;
+        }
+
+        /* Active click effect */
+        .mood-bubble:active {
+            transform: scale(0.9);
+        }
+
+        .btn-back {
+            margin-top: 40px;
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            background: #00796b;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            background: #004d40;
+        }
+    </style>
 </head>
 <body>
 
-<div class="dashboard-card">
-    <h1>Mood Tracker 😊</h1>
-    <p>Select how you feel today</p>
+<div class="mood-container">
+    <h1 style="color: #006064; font-size: 2.5rem;">How are you feeling, {{ name }}?</h1>
+    <p style="color: #00838f;">Choose a bubble that matches your vibe</p>
 
-    <div class="dashboard-grid">
-        <button class="dash-btn">Happy 😄</button>
-        <button class="dash-btn">Sad 😔</button>
-        <button class="dash-btn">Stressed 😣</button>
-        <button class="dash-btn">Calm 😌</button>
+    <div class="mood-grid">
+        <button class="mood-bubble" onclick="sendMood('happy')" onmouseover="changeBg('#fff9c4')">
+            <div class="emoji">😊</div>
+            <span>Happy</span>
+        </button>
+
+        <button class="mood-bubble" onclick="sendMood('calm')" onmouseover="changeBg('#b2ebf2')">
+            <div class="emoji">😌</div>
+            <span>Calm</span>
+        </button>
+
+        <button class="mood-bubble" onclick="sendMood('sad')" onmouseover="changeBg('#d1c4e9')">
+            <div class="emoji">😔</div>
+            <span>Sad</span>
+        </button>
+
+        <button class="mood-bubble" onclick="sendMood('stressed')" onmouseover="changeBg('#ffccbc')">
+            <div class="emoji">😫</div>
+            <span>Stressed</span>
+        </button>
     </div>
 
-    <a href="/dashboard"><button class="dash-btn logout-btn">Back</button></a>
+    <br>
+    <a href="/dashboard"><button class="btn-back">Back to Dashboard</button></a>
 </div>
+
+<script>
+    function changeBg(color) {
+        document.documentElement.style.setProperty('--bg-color', color);
+    }
+
+    function sendMood(mood) {
+        fetch("/save_mood", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ mood: mood })
+        })
+        .then(res => res.json())
+        .then(data => {
+            // Cool alert alternative: we'll just redirect to music recommendations!
+            window.location.href = "/music";
+        });
+    }
+</script>
 
 </body>
 </html>
