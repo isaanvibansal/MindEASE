@@ -4,75 +4,53 @@
     <meta charset="UTF-8">
     <title>Music Therapy | MINDEASE</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .mood-options { margin-bottom: 20px; }
+        .mood-btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .active-mood { background-color: #2E7D32; font-weight: bold; }
+    </style>
 </head>
 <body>
 
 <div class="dashboard-card">
     <h1>Music Therapy 🎵</h1>
     <p>Select music based on your mood</p>
+    
+    <div class="mood-options">
+        <h3>Select Your Mood 👇</h3>
+        <a href="{{ url_for('music', mood='happy') }}" class="mood-btn {% if current_mood == 'happy' %}active-mood{% endif %}">😊 Happy</a>
+        <a href="{{ url_for('music', mood='sad') }}" class="mood-btn {% if current_mood == 'sad' %}active-mood{% endif %}">😢 Sad</a>
+        <a href="{{ url_for('music', mood='stressed') }}" class="mood-btn {% if current_mood == 'stressed' %}active-mood{% endif %}">😣 Stressed</a>
+        <a href="{{ url_for('music', mood='angry') }}" class="mood-btn {% if current_mood == 'angry' %}active-mood{% endif %}">😤 Angry</a>
+    </div>
 
-    <!-- Calm Music -->
-    <h3>🌿 Calm & Stress Relief</h3>
-    <iframe style="border-radius:12px"
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX3rxVfibe1L0"
-        width="100%" height="380"
-        frameborder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-    </iframe>
+    <hr>
 
-    <br><br>
-
-    <!-- Focus Music -->
-    <h3>🎯 Focus & Study</h3>
-    <iframe style="border-radius:12px"
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4sWSpwq3LiO"
-        width="100%" height="380"
-        frameborder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-    </iframe>
-
-    <br><br>
-
-    <!-- Uplifting Music -->
-    <h3>🌞 Uplifting & Positive</h3>
-    <iframe style="border-radius:12px"
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DXdPec7aLTmlC"
-        width="100%" height="380"
-        frameborder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-    </iframe>
-
-    <br><br>
-
-    <!-- Devotional / Spiritual -->
-    <h3>🙏 Devotional & Spiritual</h3>
-    <iframe style="border-radius:12px"
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX6GwdWRQMQpq"
-        width="100%" height="380"
-        frameborder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-    </iframe>
-
-    <br><br>
-
-    <!-- Frank Ocean Vibe -->
-    <h3>🎧 Frank Ocean Vibe (R&B / Chill)</h3>
-    <iframe style="border-radius:12px"
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4SBhb3fqCJd"
-        width="100%" height="380"
-        frameborder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+    <h3 style="text-transform: capitalize;">🎧 {{ current_mood }} Playlist</h3>
+    <iframe style="border-radius:12px" 
+        src="https://open.spotify.com/embed/playlist/{{ playlist_id }}?utm_source=generator" 
+        width="100%" 
+        height="380" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
         loading="lazy">
     </iframe>
 
     <br><br>
 
     <a href="/dashboard">
-        <button class="dash-btn logout-btn">Back</button>
+        <button class="dash-btn logout-btn">Back to Dashboard</button>
     </a>
 </div>
 
