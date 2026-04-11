@@ -1,8 +1,10 @@
+import os
 from pymongo import MongoClient
 
-client = MongoClient("mongodb://localhost:27017/")
-db = client["mindease"]
-users_collection = db["users"]
+# Use the environment variable we set in Render
+mongo_uri = os.environ.get("MONGO_URI")
+client = MongoClient(mongo_uri)
+db = client.get_database("mindease_db") # Use your database name
 
 print("✅ Mongo connected")
 import pandas as pd
