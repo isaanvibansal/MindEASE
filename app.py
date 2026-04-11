@@ -7,9 +7,14 @@ client = MongoClient(mongo_uri)
 db = client.get_database("mindease_db") # Use your database name
 
 print("✅ Mongo connected")
+import os
 import pandas as pd
 
-df = pd.read_csv("data.csv")
+# This creates an absolute path to the file regardless of where the script runs
+base_dir = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(base_dir, 'data.csv') # Change 'data.csv' if it's in a folder like 'static/data.csv'
+
+df = pd.read_csv(csv_path)
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from datetime import datetime
