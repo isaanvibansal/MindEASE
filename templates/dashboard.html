@@ -45,22 +45,15 @@
             </a>
         </div>
 
-        <!-- INSIGHTS -->
-         <div class="dashboard-card-ui" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
-    
-            <div style="padding-top: 20px; padding-bottom: 10px;">
-                 <img src="{{ url_for('static', filename='images/insights.png') }}" 
-             alt="Insights" 
-             style="height: 120px; width: auto; object-fit: contain;">
-            </div>
+       <!-- INSIGHTS -->
+       <div class="dashboard-card-ui">
+           <img src="{{ url_for('static', filename='images/insights.png') }}" alt="Insights">
+           <p>Track your Progress</p>
+           <a href="/insights">
+               <button>Open</button>
+           </a>
+       </div>
 
-            <p style="margin-top: auto; margin-bottom: 15px;">Check your progress and data</p>
-    
-            <a href="/insights">
-                <button class="open-btn">Open</button>
-            </a>
-         </div>
-        
 
     </div>
 
