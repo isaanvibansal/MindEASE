@@ -2,27 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Signup | MINDEASE</title>
+    <title>Sign Up | MINDEASE</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-    <h1>Create Account</h1>
+<div class="auth-container">
 
-    <form action="/signup" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <br><br>
+    <!-- LEFT ILLUSTRATION -->
+    <div class="auth-left">
+        <img
+            src="{{ url_for('static', filename='images/signup.png') }}"
+            alt="Signup illustration">
+        
+    </div>
 
-        <input type="password" name="password" placeholder="Password" required>
-        <br><br>
+    <!-- RIGHT FORM -->
+    <div class="auth-right">
+        <h1>Create Account</h1>
 
-        <button type="submit">Sign Up</button>
-    </form>
+        <form method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
 
-    <p>
-        Already have an account?
-        <a href="/login">Login</a>
-    </p>
+            <button type="submit" class="auth-btn">
+                Sign Up
+            </button>
+        </form>
+
+        <p class="auth-text">
+            Already have an account?
+            <a href="/login">Login</a>
+        </p>
+    </div>
+
+</div>
 
 </body>
 </html>
