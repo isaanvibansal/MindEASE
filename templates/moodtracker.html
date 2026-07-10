@@ -1,35 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindEase - How are you?</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
     <style>
-        :root {
-            --bg-color: #e0f7fa; /* Default soft turquoise */
-        }
+        body{
 
-        body {
-            background: var(--bg-color);
-            transition: background 0.5s ease;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
+            background:
+            linear-gradient(
+                135deg,
+                #dff6ff,
+                #c8f0e8
+            );
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
         }
+        .mood-container{
+            text-align:center;
 
-        .mood-container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background:rgba(255,255,255,0.75);
+
+            backdrop-filter:blur(20px);
+
+            padding:60px;
+
+            border-radius:35px;
+
+            box-shadow:
+            0 25px 60px rgba(0,0,0,0.12);
+
+            width:1100px;
         }
+        
+
+    
+
+
+        
 
         .mood-grid {
             display: flex;
@@ -42,105 +54,141 @@
         .mood-bubble {
             width: 150px;
             height: 150px;
-            background: white;
             border-radius: 50%;
+            border: none;
+            background: white;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border: none;
+        }
+        .happy{
+            border-top: 6px solid #FFD54F;
         }
 
-        .mood-bubble:hover {
-            transform: scale(1.15) translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        .angry{
+            border-top: 6px solid #EF5350;
         }
 
-        .mood-bubble .emoji {
+        .sad{
+            border-top: 6px solid #64B5F6;
+        }
+
+        .stressed{
+            border-top: 6px solid #BA68C8;
+        }
+
+        .mood-bubble:hover{
+            transform:translateY(-10px) scale(1.08);
+
+            box-shadow:
+            0 20px 40px rgba(0,0,0,0.15);
+
+            transition:0.3s;
+        }
+
+        .happy:hover{
+            background:#FFF3B0;
+        }
+
+
+        .angry:hover{
+            background:#FFD6D6;
+        }
+
+        .sad:hover{
+            background:#DDEBFF;
+       }
+
+        .stressed:hover{
+            background:#F3D9FF;
+     }
+
+        .emoji {
             font-size: 50px;
             margin-bottom: 10px;
         }
 
         .mood-bubble span {
-            font-weight: 600;
+            font-weight: bold;
             color: #444;
         }
 
-        /* Active click effect */
-        .mood-bubble:active {
-            transform: scale(0.9);
-        }
-
         .btn-back {
-            margin-top: 40px;
+            margin-top: 30px;
             padding: 12px 30px;
-            border-radius: 25px;
             border: none;
+            border-radius: 25px;
             background: #00796b;
             color: white;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
         }
 
         .btn-back:hover {
             background: #004d40;
         }
+
+        h1 {
+            color: #006064;
+        }
+
+        p {
+            color: #00838f;
+        }
     </style>
 </head>
-<body>
+
+<body id="mood-body">
 
 <div class="mood-container">
-    <h1 style="color: #006064; font-size: 2.5rem;">How are you feeling, {{ name }}?</h1>
-    <p style="color: #00838f;">Choose a bubble that matches your vibe</p>
 
-    <div class="mood-grid">
-        <button class="mood-bubble" onclick="sendMood('happy')" onmouseover="changeBg('#fff9c4')">
-            <div class="emoji">😊</div>
-            <span>Happy</span>
-        </button>
+    <h1>How are you feeling, {{ name }}?</h1>
 
-        <button class="mood-bubble" onclick="sendMood('calm')" onmouseover="changeBg('#b2ebf2')">
-            <div class="emoji">😌</div>
-            <span>Calm</span>
-        </button>
+    <p>Choose a mood</p>
 
-        <button class="mood-bubble" onclick="sendMood('sad')" onmouseover="changeBg('#d1c4e9')">
-            <div class="emoji">😔</div>
-            <span>Sad</span>
-        </button>
+    <form action="/save_mood" method="POST">
 
-        <button class="mood-bubble" onclick="sendMood('stressed')" onmouseover="changeBg('#ffccbc')">
-            <div class="emoji">😫</div>
-            <span>Stressed</span>
-        </button>
-    </div>
+        <div class="mood-grid">
+
+            <button type="submit" name="mood" value="Happy" class="mood-bubble happy">
+                <div class="emoji">😊</div>
+                <span>Happy</span>
+            </button>
+
+            <button type="submit" name="mood" value="Angry" class="mood-bubble angry">
+                <div class="emoji">😡</div>
+                <span>Angry</span>
+            </button>
+
+            <button type="submit" name="mood" value="Sad" class="mood-bubble sad">
+                <div class="emoji">🥺</div>
+                <span>Sad</span>
+            </button>
+
+            <button type="submit" name="mood" value="Stressed" class="mood-bubble stressed">
+                <div class="emoji">😫</div>
+                <span>Stressed</span>
+            </button>
+
+        </div>
+
+    </form>
 
     <br>
-    <a href="/dashboard"><button class="btn-back">Back to Dashboard</button></a>
+
+    <a href="/dashboard">
+        <button class="btn-back">
+            Back to Dashboard
+        </button>
+    </a>
+
 </div>
-
-<script>
-    function changeBg(color) {
-        document.documentElement.style.setProperty('--bg-color', color);
-    }
-
-    function sendMood(mood) {
-        fetch("/save_mood", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ mood: mood })
-        })
-        .then(res => res.json())
-        .then(data => {
-            // Cool alert alternative: we'll just redirect to music recommendations!
-            window.location.href = "/music";
-        });
-    }
-</script>
 
 </body>
 </html>
+
