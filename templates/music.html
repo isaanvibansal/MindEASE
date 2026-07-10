@@ -36,18 +36,32 @@
 
     <hr>
 
-    <h3 style="text-transform: capitalize;">🎧 {{ current_mood }} Playlist</h3>
-    <iframe style="border-radius:12px" 
-        src="https://open.spotify.com/embed/playlist/{{ playlist_id }}?utm_source=generator" 
-        width="100%" 
-        height="380" 
-        frameBorder="0" 
-        allowfullscreen="" 
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-        loading="lazy">
-    </iframe>
+    <h3 style="text-transform: capitalize;">
+    🎧 {{ current_mood }} Playlists
+    </h3>
 
-    <br><br>
+{% for category, playlist in playlists.items() %}
+
+    <div class="playlist-card">
+
+        <h4>{{ category }}</h4>
+
+        <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/playlist/{{ playlist }}"
+            width="100%"
+            height="352"
+            frameborder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+
+    </div>
+
+<br>
+
+{% endfor %}
 
     <a href="/dashboard">
         <button class="dash-btn logout-btn">Back to Dashboard</button>
