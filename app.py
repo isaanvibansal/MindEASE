@@ -3,8 +3,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime
 
-client = MongoClient("mongodb://localhost:27017/")
-db = client["mindease"]
+import os
+client = MongoClient(os.environ.get("MONGO_URI"))
+db = client["MINDEASE"]
 users_collection = db["users"]
 
 print("✅ Mongo connected")
