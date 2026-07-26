@@ -5,7 +5,7 @@ from datetime import datetime
 
 import os
 client = MongoClient(os.environ.get("MONGO_URI"))
-db = client["MINDEASE"]
+db = client["mindease"]
 users_collection = db["users"]
 moods_collection = db["moods"]
 journals_collection= db["journals"]
