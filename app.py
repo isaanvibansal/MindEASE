@@ -7,6 +7,8 @@ import os
 client = MongoClient(os.environ.get("MONGO_URI"))
 db = client["MINDEASE"]
 users_collection = db["users"]
+moods_collection = db["moods"]
+journals_collection= db["journals"]
 
 print("✅ Mongo connected")
 
@@ -14,7 +16,8 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = "any_random_string_here"
+app.secret_key = os.environ.get("SECRET_KEY")
+
 
 @app.route("/check")
 def check():
